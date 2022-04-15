@@ -8,7 +8,7 @@ ce qu'il reste à faire:
 
 
 -Serveur DNS en physique configuration( image à lancer sur une machine de l'iut via docker )
--firewall routeur sortie vers le réseau de l'iut: port 80 
+</br>-firewall routeur sortie vers le réseau de l'iut: port 80 
 -firewall ip machine avec les conteneurs docker ( seveurs web et DNS )
 -finition des pages webs de l'entreprise
 -configuration de 2 serveurs web a l'aide d'image et implentation des sites à héberger
