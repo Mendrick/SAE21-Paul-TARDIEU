@@ -1,0 +1,42 @@
+add admin-mac=2C:C8:1B:06:BC:F1 auto-mac=no comment=defconf name=bridge
+/interface list
+add comment=defconf name=WAN
+add comment=defconf name=LAN
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/ip hotspot profile
+set [ find default=yes ] html-directory=hotspot
+/ip pool
+add name=default-dhcp ranges=192.168.88.10-192.168.88.254
+/ip dhcp-server
+add address-pool=default-dhcp interface=bridge name=defconf
+/interface bridge port
+add bridge=bridge comment=defconf interface=ether2
+add bridge=bridge comment=defconf interface=ether3
+add bridge=bridge comment=defconf interface=ether4
+add bridge=bridge comment=defconf interface=ether5
+/ip neighbor discovery-settings
+set discover-interface-list=LAN
+/interface list member
+add comment=defconf interface=bridge list=LAN
+add comment=defconf interface=ether1 list=WAN
+/ip address
+add address=10.0.0.254/16 comment=defconf interface=bridge network=10.0.0.0
+/ip dhcp-client
+add comment=defconf disabled=no interface=ether1
+/ip dhcp-server network
+add address=10.0.0.0/16 comment=defconf gateway=10.0.0.254 netmask=16
+/ip dns
+set allow-remote-requests=yes
+/ip dns static
+add address=10.0.0.254 comment=defconf name=router.lan
+/ip firewall filter
+add action=accept chain=input dst-port=80 protocol=tcp
+add action=accept chain=input dst-port=53 protocol=udp
+add action=drop chain=input in-interface-list=LAN
+/ip firewall nat
+add action=masquerade chain=srcnat comment="defconf: masquerade" ipsec-policy=out,none out-interface-list=WAN
+/tool mac-server
+set allowed-interface-list=LAN
+/tool mac-server mac-winbox
+set allowed-interface-list=LAN
