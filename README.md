@@ -1,7 +1,7 @@
 # SAE21-Paul-TARDIEU
 SAE 21 travail perso
 
-bilan d'avncer du projet:
+bilan d'avancer du projet:
 
 
 ce qu'il reste à faire:
