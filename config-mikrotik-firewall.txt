@@ -1,3 +1,9 @@
+## cette configuration à pour but de faire un firewall basique permétant au packet avec comme protocole HTTP et destination: udp+port80 de passer et l'option established+new fait que ces 
+##packets une fois passés peuvent maitenir leur fllow sans interuption par le firewall ce qui fait gagner du temps. 
+##
+##le deuxième type de paquets étant acceptés sont les paquets avec destinations tcp+port53 afin de laisser les paquets a destination du dns local de passé, toujours en 
+## forward pour autorisé la libre traversée et toujours en option new+established
+##
 /interface bridge
 add admin-mac=2C:C8:1B:06:BC:F1 auto-mac=no comment=defconf name=bridge
 /interface list
